@@ -1,0 +1,106 @@
+baseurl      = "http://localhost" # Testing
+#baseurl      = "https://scpricope.com" # Prod
+title        = "Stefan Pricope"
+languageCode = "en-us"
+theme        = "hello-friend-ng"
+paginate     = 10
+
+[permalinks]
+  posts = "/posts/:year/:month/:title/"
+
+[params]
+  dateform        = "2 Jan, 2006"
+  dateformShort   = "2 Jan"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04"
+
+  # Colors for favicons
+  [params.favicon.color]
+    mask = "#1b1c1d"
+    msapplication = "#1b1c1d"
+    theme = "#1b1c1d"
+
+  [params.logo]
+    logoMark     = "$"
+    logoText     = "cd /home/"
+    logoHomeLink = "/"
+
+  # Subtitle for home
+  homeSubtitle = "Random posts and writeups"
+
+  # Set disableReadOtherPosts to true in order to hide the links to other posts.
+  disableReadOtherPosts = false
+
+  # Enable sharing buttons, if you like
+  enableSharingButtons = true
+  
+  # Show a global language switcher in the navigation bar
+  enableGlobalLanguageMenu = false
+  enableThemeToggle = true
+
+  # Metadata mostly used in document's head
+  description = "CTF and ocasional HTB writeups, bug bounty and random blog posts"
+  keywords = "homepage, blog, ctf, htb, hack the box, bug bounty"
+  images = [""]
+  [params.author]
+    name = "Stefan Pricope"
+
+  [[params.social]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/pricopestefan/"
+
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/PricopeStefan"
+
+  [[params.social]]
+    name = "hackthebox"
+    url = "https://app.hackthebox.com/profile/90938"
+
+  [[params.social]]
+    name = "tryhackme"
+    url = "https://tryhackme.com/p/sleshwave"
+
+  [params.utterances]
+    # Your GitHub repository
+    repository = "PricopeStefan/scpricope.com"
+  
+    # label used for GitHub issues
+    label      = "utterances"
+  
+    # Blog Post <-> Issue mapping. This parameter is optional. Possible values are:
+    #    - pathname
+    #    - url
+    #    - title
+    #    - og:title
+    #    - issue number
+    #    - specific term
+    issueTerm  = "pathname"
+  
+    # Theme used: possible values are:
+    #    - github-light
+    #    - github-dark
+    #    - preferred-color-scheme
+    #    - github-dark-orange
+    #    - icy-dark
+    #    - dark-blue
+    #    - photon-dark
+    #    - boxy-light
+    #    - gruvbox-dark
+    theme      = "preferred-color-scheme"
+
+[taxonomies]
+    category = "blog"
+    tag      = "tags"
+    series   = "series"
+
+[menus]
+  [[menus.main]]
+    identifier = "blog"
+    name       = "Blog"
+    pageRef        = "/posts"
+
+  [[menus.main]]
+    identifier = "cv"
+    name       = "CV"
+    url        = "https://cv.scpricope.com"  
