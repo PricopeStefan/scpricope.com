@@ -2,7 +2,7 @@
 title: "Sending custom emails using the Google Workspace address"
 description: "Or how to rick roll people using official Google features"
 date: 2024-06-23T12:53:20+03:00
-draft: true
+draft: false
 toc: true
 images:
 tags:

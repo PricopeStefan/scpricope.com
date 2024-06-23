@@ -1,5 +1,5 @@
-baseurl      = "http://localhost" # Testing
-#baseurl      = "https://scpricope.com" # Prod
+#baseurl      = "http://localhost" # Testing
+baseurl      = "https://scpricope.com" # Prod
 title        = "Stefan Pricope"
 languageCode = "en-us"
 theme        = "hello-friend-ng"
