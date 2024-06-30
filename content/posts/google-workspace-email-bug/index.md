@@ -1,11 +1,14 @@
 ---
 title: "Sending custom emails using the Google Workspace address"
 description: "Or how to rick roll people using official Google features"
+summary: "Writeup about a bug in Google Workspaces that allowed anyone to send emails to arbitrary addresses with any content from an official @google email address."
+author: "Stefan Pricope"
 date: 2024-06-23T12:53:20+03:00
 draft: false
 toc: true
 images:
-tags:
+showWordCount: true
+tags: 
   - bug bounty
   - google
   - workspace
@@ -14,13 +17,9 @@ series:
   - Bug Bounty Writeups
 ---
 
-<!-- 
-## Table of contents
-1. [Introduction](#introduction)
-2. [Setting up Google Workspace](#setup)
-3. [Testing and exploitation](#testing)
-4. [Reporting the bug and timeline](#reporting)
-5. [Future work](#conclusion) -->
+{{< alert "tag" >}}
+**This is my first ever bug-bounty writeup so please be kind. For any observations or recommendations please don't hesitate to leave a comment below or send me an email at [stefan@scpricope.com](mailto:stefan@scpricope.com)**
+{{< /alert >}}
 
 
 ## Introduction <a name="introduction"></a>
@@ -43,7 +42,7 @@ However, my brain also decided to wander a little bit too much in that moment.
 
 Since it was a pretty slow Sunday, I had more than enough time to take a quick look at a few web requests and their parameters, test a few variations, realise that nothing was exploitable (since we're talking about a giant like Google here), and go on about my day. 
 
-![Rick and Morty quick adventure meme](/img/google-workspace-bug/rick_and_morty_20_min_adventure.jpg)
+![Rick and Morty quick adventure meme](rick_and_morty_20_min_adventure.jpg)
 
 I was expecting something like a GET/POST request to a /send_test_email endpoint just with the session cookies and without any parameters, and Google would send the email from their backend with a fixed message to the Workspace admin mailbox. So you can imagine my surprise when I opened the Developer Tools Network tab and discovered that the "Send test email" button was also sending the recipient email address and the message body to the web endpoint in the HTTP form data (data that I have complete control over).
 
@@ -52,7 +51,7 @@ I was expecting something like a GET/POST request to a /send_test_email endpoint
 Right after setting up your Google Workspace domain, you will see the following options:
 
 
-![Google Workspace setup next steps](/img/google-workspace-bug/google_workspace_send_test_email.png)  
+![Google Workspace setup next steps](google_workspace_send_test_email.png)  
 
 *I forgot to take a screenshot of this, image from this setup guide:
 https://moderndirectseller.com/custom-email-gsuite-godaddy/*
@@ -82,7 +81,7 @@ We can now clearly see that the parameters are sent as one big array (that conta
 
 Changing the recipient to other email addresses didn't seem to work, my guess is that Google had a check in the backend that the recipient had a @scpricope.com email address. However, changing the message body worked fine and I could now send email with whatever text I wanted to my admin mailbox from an official @google.com address.
 
-![RickRoll from @google.com address](/img/google-workspace-bug/gmail_mail_with_hyperlink.png)
+![RickRoll from @google.com address](gmail_mail_with_hyperlink.png)
 
 *Maybe I exaggerated a bit and I didn't have full control over the email body, Google also prepends a header in the backend to the body*
 
@@ -92,8 +91,8 @@ I thought about reporting this to Google, but quickly dismissed the idea since I
 
 At this point in time, I decided to start looking at other features Workspace had to offer and after a little bit I discovered that you could also set up custom routing rules for the emails processed by Google's mail servers. In other words, I now had the option to deliver **ALL** inbound emails to custom recipients (including external recipients). You can see where this is going.
 
-![Workspace email routing rule part 1](/img/google-workspace-bug/gmail_routing_rule_part_1.png)
-![Workspace email routing rule part 2](/img/google-workspace-bug/gmail_routing_rule_part_2_censored.png)
+![Workspace email routing rule part 1](gmail_routing_rule_part_1.png)
+![Workspace email routing rule part 2](gmail_routing_rule_part_2_censored.png)
 
 *You may notice that we also had the option to prepend custom text to the subject of inbound emails.*
 

@@ -1,5 +1,4 @@
-#baseurl      = "http://localhost" # Testing
-baseurl      = "https://scpricope.com" # Prod
+baseurl      = "https://scpricope.com"
 title        = "Stefan Pricope"
 languageCode = "en-us"
 theme        = "hello-friend-ng"
@@ -15,10 +14,10 @@ paginate     = 10
   dateformNumTime = "2006-01-02 15:04"
 
   # Colors for favicons
-  [params.favicon.color]
-    mask = "#1b1c1d"
-    msapplication = "#1b1c1d"
-    theme = "#1b1c1d"
+  # [params.favicon.color]
+  #   mask = "#1b1c1d"
+  #   msapplication = "#1b1c1d"
+  #   theme = "#1b1c1d"
 
   [params.logo]
     logoMark     = "$"
@@ -90,8 +89,8 @@ paginate     = 10
     theme      = "preferred-color-scheme"
 
 [taxonomies]
-    category = "blog"
     tag      = "tags"
+    category = "blog"
     series   = "series"
 
 [menus]
