@@ -124,11 +124,7 @@ In the end I consider the bug was somewhat fixed, but there are still a few pote
 
 Given that their vulnerability fix was to basically ignore the "message body" parameter defined in `f.req`, I wonder if it is possible to create something like a "Evil SMTP proxy" for messages that would intercept the original email, modify the body, and send it to the original recipient (we can still send messages to external accounts using the forwarding rules mentioned earlier).
 
-The only issue I could see with this plan is that some receiver email servers could potentially drop our email since google.com won't designate our MITM server as a trusted source, but will likely still pass since the other SPF checks will be legitimate and DKIM will also most likely be valid[^1].
+The only issue I could see with this plan is that some receiver email servers could potentially drop our email since google.com won't designate our MITM server as a trusted source, but will likely still pass since the other SPF checks will be legitimate and DKIM will also most likely be valid.
 
 
 Thank you so much for reading this and I really hope you enjoyed it. I don't really have much experience writing reports/blog posts but I will be trying to change that. If you have any remarks/feedback please send it to my email [scpricope@gmail.com](mailto:scpricope@gmail.com) or leave a comment below.
-
-
-
-[^1]: DKIM usually signs only email headers or attachments, not the message body itself.
